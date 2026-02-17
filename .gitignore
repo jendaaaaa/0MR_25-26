@@ -1,0 +1,14 @@
+# MAC
+.DS_Store
+
+# WIN
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+.env
+.venv
+.ipynb_checkpoints
