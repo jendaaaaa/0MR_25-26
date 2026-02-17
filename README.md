@@ -1,7 +1,7 @@
 # 0MR (2025/2026)
 python for robotics
 
-## 01 Introduction
+## [01 Introduction](01_python_introduction)
 - [ecosystem](01_python_introduction/01_ecosystem)
     - VENV
     - PIP
