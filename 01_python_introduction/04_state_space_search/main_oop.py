@@ -5,21 +5,38 @@ from collections import deque
 import time
 
 class GridMap:
-    def __init__(self, size=(50,50), start=(2,2), goal=(25,25)):
+    def __init__(self, size=(50,50), start=(2,2), goal=(48,48)):
         self.rows, self.cols = size
+        self.grid = np.zeros(size)
         self.start = start
         self.goal = goal
-        self.grid = np.zeros(size)
         
     def add_random_obstacles(self, density=0.2):
         noise = np.random.rand(self.rows, self.cols)
         self.grid[noise < density] = 1
+
         self.grid[self.start] = 0
         self.grid[self.goal] = 0
         
         num_walls = np.sum(self.grid == 1)
         print(f"Number of walls = {num_walls} | {(num_walls/self.grid.size):.2f} %")
-        
+
+    def add_cross(self, length, center = None):
+        if not center:
+            center_r, center_c = self.rows // 2, self.cols // 2
+        else:
+            center_r, center_c = center
+        c_start = max(0, center_c - length)
+        c_end   = min(self.cols, center_c + length + 1)
+        self.grid[center_r, c_start:c_end] = 1
+        r_start = max(0, center_r - length)
+        r_end   = min(self.rows, center_r + length + 1)
+        self.grid[r_start:r_end, center_c] = 1
+        self.start = (2, 2)
+        self.goal = (self.cols - 2, self.rows - 2)
+        self.grid[self.start] = 0
+        self.grid[self.goal] = 0
+
     def is_valid(self, node):
         r, c = node
         if not (0 <= r < self.rows and 0 <= c < self.cols):
@@ -28,7 +45,7 @@ class GridMap:
             return False
         return True
     
-    def visualize(self, path=None, title="Map", visited=None):
+    def create_visualization(self, path=None, title="Map", visited=None):
         display_grid = self.grid.copy()
         
         # only for visualization of visited states
@@ -46,13 +63,12 @@ class GridMap:
         plt.figure(figsize=(6, 6))
         plt.imshow(display_grid, cmap='hot', interpolation='nearest')
         plt.title(title)
-        plt.show()
         
 class BasePlanner(ABC):
     def __init__(self, grid_map: GridMap):
         self.map = grid_map
         # self.moves = [(0, -1), (-1, 0), (1, 0), (0, 1)] # WASD
-        self.moves = [(0, 1), (-1, 0), (1, 0), (0, -1)] # WDSA
+        self.moves = [(0, 1), (1, 0), (-1, 0), (0, -1)]
         
     @abstractmethod
     def solve(self):
@@ -79,16 +95,12 @@ class DFSPlanner(BasePlanner):
         
         while stack:
             current = stack.pop()
+            visited.add(current)
+            visited_list.append(current)
             
             if current == self.map.goal:
                 print("Goal reached!")
                 return self._reconstruct_path(parent_map), visited_list
-            
-            if current in visited:
-                continue
-            
-            visited.add(current)
-            visited_list.append(current)
             
             for move in self.moves:
                 next_node = (current[0] + move[0], current[1] + move[1])
@@ -116,17 +128,13 @@ class BFSPlanner(BasePlanner):
                 print("Goal reached!")
                 return self._reconstruct_path(parent_map), visited_list
             
-            if current in visited:
-                continue
-            
-            visited.add(current)
-            visited_list.append(current)
-            
             for move in self.moves:
                 next_node = (current[0] + move[0], current[1] + move[1])
                 
                 if self.map.is_valid(next_node):
                     if next_node not in visited:
+                        visited.add(current)
+                        visited_list.append(current)
                         queue.append(next_node)
                         parent_map[next_node] = current
 
@@ -164,25 +172,25 @@ class BFSPlannerEfficient(BasePlanner):
 
         print("Failed!")
         return None
-        
 
 if __name__ == "__main__":
-    world = GridMap(size=(100, 100), start=(10,10), goal=(90,90))
-    # world = GridMap()
+    world = GridMap(size=(100, 100))
     world.add_random_obstacles(density=0.1)
+    world.add_cross(30)
+    world.add_cross(10, (30,10))
+    world.add_cross(10, (70,90))
     
     dfs = DFSPlanner(world)
-    path_dfs, _ = dfs.solve()
-    world.visualize(path_dfs, "DFS Path (Stack)")
-    
-    bfs = BFSPlanner(world)
-    start = time.time()
+    bfs = BFSPlannerEfficient(world)
+    path_dfs, visited_dfs = dfs.solve()
     path_bfs, visited_bfs = bfs.solve()
-    print(f"Time to solve with List = {(time.time() - start)} s")
-    # world.visualize(path_bfs, "BFS Path (Queue)")
     
-    bfs_efficient = BFSPlannerEfficient(world)
-    start_efficient = time.time()
-    path_bfs_eff, visited_bfs_eff = bfs_efficient.solve()
-    print(f"Time to solve with Deque = {(time.time() - start_efficient)} s")
-    world.visualize(path_bfs_eff, "BFS Path (Queue)", visited_bfs_eff)
+    # with visited
+    # world.create_visualization(path_dfs, "DFS Path (Stack)", visited_dfs)
+    # world.create_visualization(path_bfs, "BFS Path (Queue)", visited_bfs)
+    
+    # without visited
+    world.create_visualization(path_dfs, "DFS Path (Stack)")
+    world.create_visualization(path_bfs, "BFS Path (Queue)")
+
+    plt.show()
