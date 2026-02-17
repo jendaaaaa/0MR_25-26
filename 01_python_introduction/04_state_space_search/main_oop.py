@@ -113,7 +113,7 @@ class DFSPlanner(BasePlanner):
         print("Failed!")
         return None
 
-class BFSPlanner(BasePlanner):
+class BFSPlannerSlow(BasePlanner):
     def solve(self):
         print("Running BFS (Queue)...")
         queue = [self.map.start]
@@ -122,6 +122,7 @@ class BFSPlanner(BasePlanner):
         parent_map = {}
         
         while queue:
+            # pop(0) with List is very inefficient > all items have to move up 1 position
             current = queue.pop(0)
             
             if current == self.map.goal:
@@ -141,7 +142,7 @@ class BFSPlanner(BasePlanner):
         print("Failed!")
         return None
 
-class BFSPlannerEfficient(BasePlanner):
+class BFSPlanner(BasePlanner):
     def solve(self):
         print("Running BFS (Queue) using Deque...")
         queue = deque([self.map.start])
@@ -150,6 +151,7 @@ class BFSPlannerEfficient(BasePlanner):
         parent_map = {}
         
         while queue:
+            # deque from collections is optimised for popleft
             current = queue.popleft()
             
             if current == self.map.goal:
@@ -181,7 +183,7 @@ if __name__ == "__main__":
     world.add_cross(10, (70,90))
     
     dfs = DFSPlanner(world)
-    bfs = BFSPlannerEfficient(world)
+    bfs = BFSPlanner(world)
     path_dfs, visited_dfs = dfs.solve()
     path_bfs, visited_bfs = bfs.solve()
     
