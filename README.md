@@ -1,4 +1,26 @@
-# 0MR 
-## 2025/26
+# 0MR (2025/2026)
+python for robotics
 
-Presentations and Code Examples.
+## 01 Introduction
+- [ecosystem](01_python_introduction/01_ecosystem)
+    - VENV
+    - PIP
+    - entry point
+    - project structure
+
+- [data structures](01_python_introduction/02_data_structures)
+    - list
+    - tuple
+    - dict
+    - set
+    - np.array
+
+- [classes](01_python_introduction/03_classes)
+    - basics
+    - inheritance
+    - abstract
+    - polymorphism
+
+- [state space search](01_python_introduction/01_ecosystem/)
+    - DFS
+    - BFS
