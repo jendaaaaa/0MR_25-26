@@ -2,6 +2,7 @@
 python for robotics
 
 ## [01 Introduction](01_python_introduction)
+Short presentation in [PDF](01_python_introduction.pdf).
 - [ecosystem](01_python_introduction/01_ecosystem)
     - VENV
     - PIP
