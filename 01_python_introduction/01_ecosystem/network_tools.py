@@ -1,25 +1,24 @@
 import time
-from colorama import Fore, Back, Style, init
-
-init(autoreset=True)
 
 def ping_target(target):
-    print(Fore.GREEN + f"[network_tools.py] Pinging target {target}...")
+    print(f"[network_tools.py] Pinging target {target}...")
         
 def format_drive(target):
-    print(Back.YELLOW + f"[network_tools.py] Connecting to target {target}...")
+    print(f"[network_tools.py] Connecting to target {target}...")
     time.sleep(1)
-    print(Back.GREEN + f"[network_tools.py] Connected to target {target}!")
-    print(Back.RED + Fore.WHITE + f"[network_tools.py] Formatting drive...")
+    print(f"[network_tools.py] Connected to target {target}!")
+    print(f"[network_tools.py] Formatting drive...")
     time.sleep(1)
-    print(Back.RED + Fore.WHITE + f"[network_tools.py] >>> Drive Formatted!")
-    print(Style.RESET_ALL)
+    print(f"[network_tools.py] >>> Drive Formatted!")
     
-# # testing script (WRONG - outside entry point)
+# WRONG!
+# defined in global scope -> being executed when imported to a different script!
+# supposed to be only for testing the library
 target = "192.168.1.12"
 format_drive(target)
 
+# CORRECT!
+# inside entry point, runs only when called using 'python' command
 if __name__ == "__main__":
-    # testing script (CORRECT - inside entry point, runs only when called using 'python' command)
     target = "192.168.1.12"
     format_drive(target)
