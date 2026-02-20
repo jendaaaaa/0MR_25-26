@@ -32,8 +32,6 @@ class GridMap:
         r_start = max(0, center_r - length)
         r_end   = min(self.rows, center_r + length + 1)
         self.grid[r_start:r_end, center_c] = 1
-        self.start = (2, 2)
-        self.goal = (self.cols - 2, self.rows - 2)
         self.grid[self.start] = 0
         self.grid[self.goal] = 0
 
@@ -60,8 +58,14 @@ class GridMap:
         display_grid[self.start] = 0.2
         display_grid[self.goal] = 0.8
         
+        # we imagine the STATE SPACE as (x,y) but in numpy it is (row, column) -> (y, x)
+        # we could change our mental model of the STATE SPACE or just use .transpose()
+        
+        # plus imshow is used for images where origin is LEFT TOP not LEFT BOTTOM
+        # therefore moving DOWN is POSITIVE and UP is NEGATIVE
+        
         plt.figure(figsize=(6, 6))
-        plt.imshow(display_grid, cmap='hot', interpolation='nearest')
+        plt.imshow(display_grid.transpose(), cmap='hot', interpolation='nearest')
         plt.title(title)
         
 class BasePlanner(ABC):
@@ -176,7 +180,7 @@ class BFSPlanner(BasePlanner):
         return None
 
 if __name__ == "__main__":
-    world = GridMap(size=(100, 100))
+    world = GridMap(size=(100, 100), start=(10,10), goal=(90,40))
     world.add_random_obstacles(density=0.1)
     world.add_cross(30)
     world.add_cross(10, (30,10))
@@ -188,11 +192,11 @@ if __name__ == "__main__":
     path_bfs, visited_bfs = bfs.solve()
     
     # with visited
-    # world.create_visualization(path_dfs, "DFS Path (Stack)", visited_dfs)
-    # world.create_visualization(path_bfs, "BFS Path (Queue)", visited_bfs)
+    world.create_visualization(path_dfs, "DFS Path (Stack)", visited_dfs)
+    world.create_visualization(path_bfs, "BFS Path (Queue)", visited_bfs)
     
     # without visited
-    world.create_visualization(path_dfs, "DFS Path (Stack)")
-    world.create_visualization(path_bfs, "BFS Path (Queue)")
+    # world.create_visualization(path_dfs, "DFS Path (Stack)")
+    # world.create_visualization(path_bfs, "BFS Path (Queue)")
 
     plt.show()
