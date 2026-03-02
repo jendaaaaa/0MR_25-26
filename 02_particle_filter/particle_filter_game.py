@@ -48,6 +48,43 @@ class Environment:
         screen.blit(self.map_surface_invisible, (0, 0))
 
 ##################################################################
+class Sensor:
+    def __init__(self, fov_degrees: int, num_rays: int, noise_std: float, max_range: float):
+        self.fov = math.radians(float(fov_degrees))
+        self.num_rays = num_rays
+        self.noise_std = noise_std
+        self.max_range = max_range
+        self.last_scan = []
+        
+        self.__scan_step = 2.0
+        
+        if self.num_rays > 1:
+            self.angle_increment = self.fov / (self.num_rays - 1)
+        else:
+            self.angle_increment = 0.0
+            self.fov = 0.0
+            
+    def sense(self, x: float, y: float, theta: float, env: Environment) -> None:
+        measurements = []
+        start_angle = -(self.fov / 2.0)
+        for i in range(self.num_rays):
+            relative_angle = start_angle + (i * self.angle_increment)
+            global_angle = theta + relative_angle
+            distance = 0
+            while distance <= self.max_range:
+                check_x = x + distance * math.cos(global_angle)
+                check_y = y + distance * math.sin(global_angle)
+                
+                if env.is_collision(check_x, check_y):
+                    noisy_distance = distance + random.gauss(0, self.noise_std)
+                    measurements.append((noisy_distance, relative_angle))
+                    break
+                
+                distance += self.__scan_step
+        
+        return measurements
+
+##################################################################
 class Robot:
     def __init__(self, x: float, y: float, theta: float, sensor: Sensor):
         self.x = x
@@ -109,43 +146,6 @@ class Robot:
             x = self.x + d * math.cos(self.theta + phi)
             y = self.y + d * math.sin(self.theta + phi)
             pygame.draw.circle(screen, COLOR_SENSOR_MEASUREMENTS, (int(x), int(y)), 2)
-
-##################################################################
-class Sensor:
-    def __init__(self, fov_degrees: int, num_rays: int, noise_std: float, max_range: float):
-        self.fov = math.radians(float(fov_degrees))
-        self.num_rays = num_rays
-        self.noise_std = noise_std
-        self.max_range = max_range
-        self.last_scan = []
-        
-        self.__scan_step = 2.0
-        
-        if self.num_rays > 1:
-            self.angle_increment = self.fov / (self.num_rays - 1)
-        else:
-            self.angle_increment = 0.0
-            self.fov = 0.0
-            
-    def sense(self, x: float, y: float, theta: float, env: Environment) -> None:
-        measurements = []
-        start_angle = -(self.fov / 2.0)
-        for i in range(self.num_rays):
-            relative_angle = start_angle + (i * self.angle_increment)
-            global_angle = theta + relative_angle
-            distance = 0
-            while distance <= self.max_range:
-                check_x = x + distance * math.cos(global_angle)
-                check_y = y + distance * math.sin(global_angle)
-                
-                if env.is_collision(check_x, check_y):
-                    noisy_distance = distance + random.gauss(0, self.noise_std)
-                    measurements.append((noisy_distance, relative_angle))
-                    break
-                
-                distance += self.__scan_step
-        
-        return measurements
 
 ##################################################################
 class ParticleFilter:
