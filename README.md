@@ -12,6 +12,4 @@ Short presentation in [PDF](01_python_introduction.pdf).
 - [state space search](01_python_introduction/01_ecosystem/) (DFS, BFS)
 
 ## [02 Particle Filter](02_particle_filter)
-Examples and explanatory videos on youtube:
-[MATLAB](https://www.youtube.com/watch?v=NrzmH_yerBU) video about SLAM and PF with animations
-[Cyrill Stachiniss](https://www.youtube.com/watch?v=eAqAFSrTGGY&t=1307s) explains PF with more mathematical approach
+Examples and explanatory videos on YT: [MATLAB](https://www.youtube.com/watch?v=NrzmH_yerBU) video about SLAM and PF with animations, [Cyrill Stachiniss](https://www.youtube.com/watch?v=eAqAFSrTGGY&t=1307s) explains PF with more mathematical approach.
