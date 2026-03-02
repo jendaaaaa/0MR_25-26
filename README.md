@@ -1,5 +1,5 @@
 # 0MR (2025/2026)
-python for robotics
+BUT FEM robotics course in Python.
 
 ## [01 Introduction](01_python_introduction)
 Short presentation in [PDF](01_python_introduction.pdf).
