@@ -318,7 +318,7 @@ def main():
     pygame.display.set_caption("Particle Filter Simulator")
     clock = pygame.time.Clock()
     
-    path = os.path.join(".", "img", "map1.bmp")
+    path = os.path.join(".", "img", "map2.bmp")
     env = Environment(path)
     lidar = Sensor(360.0, 60, 0.5, 200)
     robot = Robot(x=100, y=200, theta=3, sensor=lidar)
