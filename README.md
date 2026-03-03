@@ -12,3 +12,4 @@ Short presentation in [PDF](01_python_introduction.pdf).
 Examples and explanatory videos on YT: [MATLAB](https://www.youtube.com/watch?v=NrzmH_yerBU) video about SLAM and PF with animations, [Cyrill Stachiniss](https://www.youtube.com/watch?v=eAqAFSrTGGY&t=1307s) explains PF with more mathematical approach.
 - [demonstration](02_particle_filter/particle_filter_demo.py): simple demonstration of mobile robot driving forward and localization using particle filter
 - [game](02_particle_filter/particle_filter_game.py): gamified version of robot in space equipped with lidar using PF for localization
+- [archive](02_particle_filter/archive_classes/) of Python scripts from each class (MON, TUE)
