@@ -25,6 +25,9 @@ STEP_DISTANCE = 1
 SIGMA_DISTANCE = 0.5            # uncertainty in driving forward
 SIGMA_ANGLE = 0.3               # uncertainty in steering
 
+# --- animation
+ANIM_PAUSE_S = 0.3
+
 ##################################################################
 # MOTION #########################################################
 ##################################################################
@@ -40,7 +43,7 @@ def motion_model(state, d_phi=0.0, distance=STEP_DISTANCE):
 # robot's movement is not perfect, it moves with ceratin amount of noise
 # (steers a bit more/less, goes a bit faster/slower)
 def move_robot(robot_state):
-    d_phi = random.gauss(0.0, 0.005)                    # noise in steering
+    d_phi = random.gauss(0.0, 0.01)                     # noise in steering
     distance = random.gauss(STEP_DISTANCE, 0.01)        # noise in driving forward
     return motion_model(robot_state, d_phi, distance)   # returning precise motion model with added noise
 
@@ -112,7 +115,7 @@ if __name__ == "__main__":
     particles = [(0.0, 0.0, 0.0) for _ in range(NUM_PARTICLES)]
     state_estimated = state
 
-    # >>> robot doesnt know where it is
+    # # >>> robot doesnt know where it is
     # particles = []
     # for _ in range(NUM_PARTICLES):
     #     rand_x = random.uniform(MAP_MIN_X, MAP_MAX_X)
@@ -127,29 +130,29 @@ if __name__ == "__main__":
     plt.xlim(MAP_MIN_X, MAP_MAX_X)
     plt.ylim(MAP_MIN_Y, MAP_MAX_Y)
     
+    # initialize legend
     plt.plot([], [], 'ko', markersize=8, label="landmarks")
     plt.plot([], [], 'ro', markersize=8, label="Real Position")
     plt.plot([], [], 'bo', markersize=6, label="Estimated Position")
     plt.scatter([], [], color='green', alpha=1, label="Particles")
-    plt.legend(loc="upper left")
 
     # draw landmarks
     for landmark in LANDMARK_POSITIONS:
         plt.plot(landmark[0], landmark[1], 'ko', markersize=8)
 
+    # draw initial state
+    plt.plot(state[0], state[1], 'ro', markersize=8)
+    plt.plot(state_estimated[0], state_estimated[1], 'bo', markersize=6)
+    px = [p[0] for p in particles]
+    py = [p[1] for p in particles]
+    plt.scatter(px, py, color='green', alpha=0.3)
+
+    # update plot and wait
+    plt.legend(loc="upper left")
+    plt.pause(ANIM_PAUSE_S)
+
     # iterate through all steps
-    for step in range(NUM_STEPS + 1):
-        # draw robot
-        plt.plot(state[0], state[1], 'ro', markersize=8)
-
-        # draw particles
-        px = [p[0] for p in particles]
-        py = [p[1] for p in particles]
-        plt.scatter(px, py, color='green', alpha=0.3, s=10)
-
-        # draw estimated position
-        plt.plot(state_estimated[0], state_estimated[1], 'bo', markersize=6)
-
+    for step in range(NUM_STEPS):
         # move robot
         state = move_robot(state)
 
@@ -167,8 +170,19 @@ if __name__ == "__main__":
 
         # calculate estimated position
         state_estimated = get_estimate(particles)
+        
+        # draw robot
+        plt.plot(state[0], state[1], 'ro', markersize=8)
+
+        # draw particles
+        px = [p[0] for p in particles]
+        py = [p[1] for p in particles]
+        plt.scatter(px, py, color='green', alpha=0.3, s=10)
+
+        # draw estimated position
+        plt.plot(state_estimated[0], state_estimated[1], 'bo', markersize=6)
 
         # animate plot
-        plt.pause(0.3)
-        
+        plt.pause(ANIM_PAUSE_S)
+
     plt.show()
