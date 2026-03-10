@@ -15,3 +15,9 @@ Examples and explanatory videos on YT: [MATLAB](https://www.youtube.com/watch?v=
 ### Scripts:
 - [demonstration](02_particle_filter/particle_filter_demo.py) - simple demonstration of mobile robot driving forward and localization using particle filter
 - [game](02_particle_filter/particle_filter_game.py) - gamified version of robot in space equipped with lidar using PF for localization
+
+## [03 SLAM](03_slam)
+Simultaneous Localization and Mapping with Particle Filter.
+
+### Scripts:
+- [base](03_slam/base_main.py) - starting point for this class
