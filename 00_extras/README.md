@@ -25,21 +25,21 @@ Follow these steps to configure your environment:
 
 ---
 
-## Troubleshooting
+### Troubleshooting
 
-### Port COM3 not Visible
+#### Port COM3 not Visible
 If ArduinoIDE keeps "connecting....." and it fails, you likely need the **CP2102 driver**:
 * **Download**: [Silicon Labs VCP Drivers](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)
 Quicky way to check: Open **Device Manager** in Windows and look at Ports. If you see yellow warning with "Unknown device" label, you definitely need to install the driver.
 
-### Installation Failures
+#### Installation Failures
 If the IDE is giving you trouble, or you dont have permission to install on you device, you can use these web-based alternatives:
 * **Binary Uploader**: [Adafruit WebSerial ESPTool](https://adafruit.github.io/Adafruit_WebSerial_ESPTool/)
 * **Serial Monitor**: [Google Chrome Serial Terminal](https://googlechromelabs.github.io/serial-terminal/)
 
 ---
 
-## Test Program
+### Test Program
 
 Copy and paste the code below into a new sketch to verify your connection. After uploading, open the **Serial Monitor** and set the baud rate to **115200**.
 
