@@ -22,6 +22,7 @@ Follow these steps to configure your environment:
 6.  **Upload**: Click **Sketch > Upload** (or press `CTRL` + `U`).
 
 
+---
 
 ### Troubleshooting
 
@@ -36,6 +37,7 @@ If the IDE is giving you trouble, or you dont have permission to install on you 
 * **Serial Monitor**: [Google Chrome Serial Terminal](https://googlechromelabs.github.io/serial-terminal/)
 
 
+---
 
 ### Test Program
 
@@ -61,10 +63,14 @@ void loop() {
 ## Python
 If you want to read Serial communication in Python, you likely need the **pyserial** library.
 
+---
+
 ### 1. Installation
 ```sh
 pip install pyserial
 ```
+
+---
 
 ### 2. Script
 ```python
