@@ -21,10 +21,6 @@ Follow these steps to configure your environment:
     * Go to **Tools > Port** and select the active **COMx** port.
 6.  **Upload**: Click **Sketch > Upload** (or press `CTRL` + `U`).
 
-
-
----
-
 ### Troubleshooting
 
 #### Port COM3 not Visible
@@ -36,8 +32,6 @@ Quicky way to check: Open **Device Manager** in Windows and look at Ports. If yo
 If the IDE is giving you trouble, or you dont have permission to install on you device, you can use these web-based alternatives:
 * **Binary Uploader**: [Adafruit WebSerial ESPTool](https://adafruit.github.io/Adafruit_WebSerial_ESPTool/)
 * **Serial Monitor**: [Google Chrome Serial Terminal](https://googlechromelabs.github.io/serial-terminal/)
-
----
 
 ### Test Program
 
@@ -58,6 +52,8 @@ void loop() {
 }
 ```
 
+---
+
 ## Python
 If you want to read Serial communication in Python, you likely need the **pyserial** library.
 
@@ -70,7 +66,5 @@ pip install pyserial
 ```python
 import serial
 ```
-
----
 
 Tip: You cannot have the Arduino Serial Monitor and the Python Script open at the same time. Only one program can "own" the COM port at once.
