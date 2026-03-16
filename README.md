@@ -20,6 +20,8 @@ Examples and explanatory videos on YT: [MATLAB](https://www.youtube.com/watch?v=
 Simultaneous Localization and Mapping with Particle Filter.
 - [archive/](03_slam/archive_classes/): Python scripts from each class (MON, TUE)
 
+![SLAM Simulation](03_slam/slam_simulation.gif)
+
 ### Scripts:
 - [slam_base](03_slam/slam_base-pf_only.py) - starting point for SLAM implementation using Particle Filter from previous class
 - [slam_demo](03_slam/slam_demo.py) - demo script animating SLAM algorithm using Particle Filter
