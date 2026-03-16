@@ -10,9 +10,6 @@ MAP_X_MIN, MAP_X_MAX = -1.0, 11.0
 MAP_Y_MIN, MAP_Y_MAX = -6.0, 6.0
 LANDMARK_POSITIONS = [(2.0, 2.0), (2.0, -3.0), (3.0, 3.0), (5.0, -3), (5.0, 2.5), (8.0, -2.0), (9.0, 3.0)]
 
-STD_ANGLE = 0.2
-STD_DISTANCE = 0.2
-
 ANIM_PAUSE = 0.3
 
 #########################
