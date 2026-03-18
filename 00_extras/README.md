@@ -2,6 +2,9 @@
 
 This guide provides step-by-step instructions for setting up the NodeMCU (ESP8266) with the Arduino IDE, including troubleshooting steps for common connection issues.
 
+## Board Pinout
+![NodeMCU Pinout](NodeMCU_ESP8266_Pinout.jpg)
+
 ---
 
 ## Arduino IDE Setup
