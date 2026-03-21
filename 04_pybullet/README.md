@@ -87,7 +87,7 @@ for i in range(1000):
 p.disconnect()
 ```
 
-[PyBullet Hello World](/pybullet_hello_world.png)
+![PyBullet Hello World](/pybullet_hello_world.png)
 
 ---
 
