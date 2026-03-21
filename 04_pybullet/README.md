@@ -2,6 +2,8 @@
 
 **PyBullet** is the Python interface for the [Bullet Physics SDK](https://pybullet.org/). It is a high-performance physics engine used widely for **Reinforcement Learning (RL)**, **Motion Planning**, and **Sim-to-Real** transfer in robotics.
 
+[Bullet Docs](https://github.com/bulletphysics/bullet3/tree/master/docs)
+
 ---
 
 ## 1. Core Architecture
