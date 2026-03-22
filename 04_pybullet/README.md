@@ -58,7 +58,7 @@ p.loadURDF("plane.urdf") # Load a floor
 
 ---
 
-## 4. "Hello World" Script
+## 4. Test Script
 Copy and paste this into a `.py` file to see a simple robotic arm in action.
 
 ```python
@@ -87,11 +87,26 @@ for i in range(1000):
 p.disconnect()
 ```
 
-![PyBullet Hello World](/pybullet_hello_world.png)
+![PyBullet Screen](./pybullet_hello_world.png)
 
 ---
 
-## Tips
+## 5. Tips
 1.  **Quaternions:** PyBullet uses Quaternions $(x, y, z, w)$ for rotation. Use `p.getQuaternionFromEuler([r, p, y])` if you prefer working with degrees/radians.
 2.  **Indexing:** Joint indices start at $0$. Always check `p.getNumJoints(robotId)` and `p.getJointInfo()` to identify which index corresponds to which motor.
 3.  **Real-Time:** If you don't want to manually step the simulation, use `p.setRealTimeSimulation(1)`, but note this is less deterministic for AI training.
+
+---
+
+## Useful Tools
+### CAD & Modeling
+- [Onshape](https://www.onshape.com/) - Cloud CAD with native URDF export.
+- [MeshLab](https://www.meshlab.net/) - For simplifying STL meshes for faster simulation.
+
+### VS Code Extensions
+- `URDF` & `URDF Previewer` - Live 3D visualization of your robot model.
+- `Error Lens` - Inline error reporting for faster debugging.
+
+### Libraries & Docs
+- [PyBullet Quickstart Guide](https://docs.google.com/document/d/10sXEhzFRSnvFcl3XxNGhnD4N2SedqwdAvK3dsihxVUA/edit) - The ultimate API reference.
+- [pybullet-industrial](https://github.com/p_industrial) - Tools for manufacturing and end-effector simulation.
