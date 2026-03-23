@@ -32,74 +32,6 @@ The **Unified Robot Description Format (URDF)** is an XML file that defines the 
     * **Prismatic:** Linear sliding movement (e.g., a piston).
     * **Fixed:** No movement allowed (e.g., a camera mount).
 
-### Example
-2D Pendulum with 1 linear movement and 1 rotational movement.
-```xml
-<?xml version="1.0"?>
-<robot name="pendulum">
-    <link name="world">
-    </link>
-
-    <joint name="world_to_cart" type="prismatic">
-        <parent link="world"/>
-        <child link="cart"/>
-        <origin xyz="0 0 0"/>
-        <axis xyz="1 0 0"/>
-        <limit lower="-5" upper="5" effort="1000" velocity="100"/>
-    </joint>
-    
-    <link name="cart">
-        <visual>
-            <geometry>
-                <box size="1 0.5 0.2"/>
-            </geometry>
-            <material name="kokot">
-                <color rgba="0.2 0.2 1 0.9"/>
-            </material>
-        </visual>
-        <collision>
-            <geometry>
-                <box size="1 0.5 0.2"/>
-            </geometry>
-        </collision>
-        <inertial>
-            <mass value="1.0"/>
-            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-        </inertial>
-    </link>
-
-    <joint name="cart_to_pole" type="continuous">
-        <parent link="cart"/>
-        <child link="pole"/>
-        <origin xyz="0 0 0"/>
-        <axis xyz="0 1 0"/>
-    </joint>
-
-    <link name="pole">
-        <visual>
-            <origin xyz="0 0 0.5"/>
-            <geometry>
-                <cylinder radius="0.03" length="1.0"/>
-            </geometry>
-            <material name="curak">
-                <color rgba="1 0.2 0.2 1"/>
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0.5"/>
-            <geometry>
-                <cylinder radius="0.03" length="1.0"/>
-            </geometry>
-        </collision>
-        <inertial>
-            <origin xyz="0 0 0.5"/>
-            <mass value="1"/>
-            <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.004" iyz="0" izz="0.0001"/>
-        </inertial>
-    </link>
-</robot>
-```
-
 ---
 
 ## Essential Commands
@@ -126,39 +58,6 @@ p.loadURDF("plane.urdf") # Load a floor
 | **Get State** | `pos, orn = p.getBasePositionAndOrientation(robotId)` |
 | **Move Joint** | `p.setJointMotorControl2(robotId, jointIdx, p.POSITION_CONTROL, targetPosition=val)` |
 | **Inverse Kinematics** | `jointPoses = p.calculateInverseKinematics(robotId, eeIdx, [x, y, z])` |
-
----
-
-## Test Script
-Copy and paste this into a `.py` file to see a simple robotic arm in action.
-
-```python
-import pybullet as p
-import pybullet_data
-import time
-
-# Initialize
-p.connect(p.GUI)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
-p.setGravity(0, 0, -9.81)
-
-# Load Plane and Robot
-planeId = p.loadURDF("plane.urdf")
-robotId = p.loadURDF("franka_panda/panda.urdf", useFixedBase=True)
-
-# Simulation Loop
-for i in range(1000):
-    # Move joint index 0 to a sine-wave position
-    targetPos = 1.0 * (i / 100.0)
-    p.setJointMotorControl2(robotId, 0, p.POSITION_CONTROL, targetPosition=targetPos)
-    
-    p.stepSimulation()
-    time.sleep(1./240.) # 240Hz is the default step frequency
-
-p.disconnect()
-```
-
-![PyBullet Screen](./pybullet_hello_world.png)
 
 ---
 
@@ -196,3 +95,78 @@ To install PyBullet on Windows, follow these steps to ensure the necessary C++ c
     ```bash
     pip install pybullet
     ```
+
+# Examples
+
+## Test Script
+Copy and paste this into a `.py` file to see a simple robotic arm in action.
+
+```python
+import pybullet as p
+import pybullet_data
+import time
+
+# Initialize
+p.connect(p.GUI)
+p.setAdditionalSearchPath(pybullet_data.getDataPath())
+p.setGravity(0, 0, -9.81)
+p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)     # Recommended for MacOS!
+
+# Load Plane and Robot
+planeId = p.loadURDF("plane.urdf")
+robotId = p.loadURDF("franka_panda/panda.urdf", useFixedBase=True)
+
+# Simulation Loop
+for i in range(1000):
+    # Move joint index 0 to a sine-wave position
+    targetPos = 1.0 * (i / 100.0)
+    p.setJointMotorControl2(robotId, 0, p.POSITION_CONTROL, targetPosition=targetPos)
+    
+    p.stepSimulation()
+    time.sleep(1./240.) # 240Hz is the default step frequency
+
+p.disconnect()
+```
+
+![PyBullet Screen](./pybullet_hello_world.png)
+
+---
+
+## URDF
+Example of a part of 2D pendulum - Cart with 1 DoF (lienar motion) without the rod.
+```xml
+<?xml version="1.0"?>
+<robot name="pendulum">
+    <link name="world">
+    </link>
+
+    <joint name="world_to_cart" type="prismatic">
+        <parent link="world"/>
+        <child link="cart"/>
+        <origin xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-5" upper="5" effort="1000" velocity="100"/>
+    </joint>
+    
+    <link name="cart">
+        <visual>
+            <geometry>
+                <box size="1 0.5 0.2"/>
+            </geometry>
+            <material name="kokot">
+                <color rgba="0.2 0.2 1 0.9"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="1 0.5 0.2"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1.0"/>
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+        </inertial>
+    </link>
+</robot>
+```
+
