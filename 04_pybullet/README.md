@@ -98,15 +98,34 @@ p.disconnect()
 
 ---
 
-## Useful Tools
-### CAD & Modeling
+# Installation
+
+To install PyBullet on Windows, follow these steps to ensure the necessary C++ compiler is available:
+
+1.  **Download Visual Studio Build Tools**: 
+    Go to the [Visual Studio Build Tools page](https://visualstudio.microsoft.com/visual-cpp-build-tools/) and download the installer.
+2.  **Configure Workloads**:
+    * Open the **Visual Studio Installer**.
+    * Select **Modify** on your Build Tools installation.
+    * Under the "Workloads" tab, check **Desktop development with C++**.
+    * Click **Modify** or **Install** to apply changes.
+3.  **Install via pip**:
+    Open your terminal or command prompt and run:
+    ```bash
+    pip install pybullet
+    ```
+
+---
+
+# Useful Tools
+## CAD & Modeling
 - [Onshape](https://www.onshape.com/) - Cloud CAD with native URDF export.
 - [MeshLab](https://www.meshlab.net/) - For simplifying STL meshes for faster simulation.
 
-### VS Code Extensions
+## VS Code Extensions
 - `URDF` & `URDF Previewer` - Live 3D visualization of your robot model.
 - `Error Lens` - Inline error reporting for faster debugging.
 
-### Libraries & Docs
+## Libraries & Docs
 - [PyBullet Quickstart Guide](https://docs.google.com/document/d/10sXEhzFRSnvFcl3XxNGhnD4N2SedqwdAvK3dsihxVUA/edit) - The ultimate API reference.
 - [pybullet-industrial](https://github.com/p_industrial) - Tools for manufacturing and end-effector simulation.
