@@ -34,3 +34,7 @@ Simultaneous Localization and Mapping with Particle Filter.
 
 ## [04 PyBullet](04_pybullet)
 Introduction to Python interface for the Bullet Physics SDK.
+
+### Scripts:
+- [elasticity showcase](04_pybullet/elasticity_showcase.py) - different values of object's restitution values
+- [inverted pendulum](04_pybullet/inverted_pendulum.py) - simple PID algorithm controlling the inverted pendulum, but you have to tune your PID parameters!
