@@ -29,6 +29,72 @@ The **Unified Robot Description Format (URDF)** is an XML file that defines the 
     * **Prismatic:** Linear sliding movement (e.g., a piston).
     * **Fixed:** No movement allowed (e.g., a camera mount).
 
+```xml
+<?xml version="1.0"?>
+<robot name="pendulum">
+    <link name="world">
+    </link>
+
+    <joint name="world_to_cart" type="prismatic">
+        <parent link="world"/>
+        <child link="cart"/>
+        <origin xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-5" upper="5" effort="1000" velocity="100"/>
+    </joint>
+    
+    <link name="cart">
+        <visual>
+            <geometry>
+                <box size="1 0.5 0.2"/>
+            </geometry>
+            <material name="kokot">
+                <color rgba="0.2 0.2 1 0.9"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="1 0.5 0.2"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1.0"/>
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+        </inertial>
+    </link>
+
+    <joint name="cart_to_pole" type="continuous">
+        <parent link="cart"/>
+        <child link="pole"/>
+        <origin xyz="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="pole">
+        <visual>
+            <origin xyz="0 0 0.5"/>
+            <geometry>
+                <cylinder radius="0.03" length="1.0"/>
+            </geometry>
+            <material name="curak">
+                <color rgba="1 0.2 0.2 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.5"/>
+            <geometry>
+                <cylinder radius="0.03" length="1.0"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0.5"/>
+            <mass value="1"/>
+            <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.004" iyz="0" izz="0.0001"/>
+        </inertial>
+    </link>
+</robot>
+```
+
 ---
 
 ## Essential Commands
