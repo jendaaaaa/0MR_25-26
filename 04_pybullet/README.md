@@ -61,13 +61,6 @@ p.loadURDF("plane.urdf") # Load a floor
 
 ---
 
-## Tips
-1.  **Quaternions:** PyBullet uses Quaternions $(x, y, z, w)$ for rotation. Use `p.getQuaternionFromEuler([r, p, y])` if you prefer working with degrees/radians.
-2.  **Indexing:** Joint indices start at $0$. Always check `p.getNumJoints(robotId)` and `p.getJointInfo()` to identify which index corresponds to which motor.
-3.  **Real-Time:** If you don't want to manually step the simulation, use `p.setRealTimeSimulation(1)`, but note this is less deterministic for AI training.
-
----
-
 ## Useful Tools
 ### CAD & Modeling
 - [Onshape](https://www.onshape.com/) - Cloud CAD with native URDF export.
@@ -95,6 +88,8 @@ To install PyBullet on Windows, follow these steps to ensure the necessary C++ c
     ```bash
     pip install pybullet
     ```
+
+---
 
 # Examples
 
@@ -129,8 +124,6 @@ p.disconnect()
 ```
 
 ![PyBullet Screen](./pybullet_hello_world.png)
-
----
 
 ## URDF
 Example of a part of 2D pendulum - Cart with 1 DoF (lienar motion) without the rod.
