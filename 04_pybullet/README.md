@@ -2,7 +2,10 @@
 
 **PyBullet** is the Python interface for the [Bullet Physics SDK](https://pybullet.org/). It is a high-performance physics engine used widely for **Reinforcement Learning (RL)**, **Motion Planning**, and **Sim-to-Real** transfer in robotics.
 
-[Bullet Docs](https://github.com/bulletphysics/bullet3/tree/master/docs)
+## Libraries & Docs
+- [PyBullet Quickstart Guide](https://docs.google.com/document/d/10sXEhzFRSnvFcl3XxNGhnD4N2SedqwdAvK3dsihxVUA/edit) - The ultimate API reference.
+- [pybullet-industrial](https://github.com/p_industrial) - Tools for manufacturing and end-effector simulation.
+- [Bullet Docs](https://github.com/bulletphysics/bullet3/tree/master/docs) - GiHub Repo.
 
 ---
 
@@ -29,6 +32,8 @@ The **Unified Robot Description Format (URDF)** is an XML file that defines the 
     * **Prismatic:** Linear sliding movement (e.g., a piston).
     * **Fixed:** No movement allowed (e.g., a camera mount).
 
+### Example
+2D Pendulum with 1 linear movement and 1 rotational movement.
 ```xml
 <?xml version="1.0"?>
 <robot name="pendulum">
@@ -191,7 +196,3 @@ To install PyBullet on Windows, follow these steps to ensure the necessary C++ c
     ```bash
     pip install pybullet
     ```
-
-## Libraries & Docs
-- [PyBullet Quickstart Guide](https://docs.google.com/document/d/10sXEhzFRSnvFcl3XxNGhnD4N2SedqwdAvK3dsihxVUA/edit) - The ultimate API reference.
-- [pybullet-industrial](https://github.com/p_industrial) - Tools for manufacturing and end-effector simulation.
