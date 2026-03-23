@@ -6,7 +6,7 @@
 
 ---
 
-## 1. Core Architecture
+## Core Architecture
 PyBullet operates on a **Client-Server** model. Your Python script is the *Client*, sending instructions to the *Physics Server* which handles the heavy math.
 
 ### Connection Modes
@@ -15,7 +15,7 @@ PyBullet operates on a **Client-Server** model. Your Python script is the *Clien
 
 ---
 
-## 2. The URDF
+## The URDF
 The **Unified Robot Description Format (URDF)** is an XML file that defines the robot's structure using a tree-like hierarchy.
 
 ### Links vs. Joints
@@ -31,7 +31,7 @@ The **Unified Robot Description Format (URDF)** is an XML file that defines the 
 
 ---
 
-## 3. Essential Commands
+## Essential Commands
 
 ### Simulation Setup
 ```python
@@ -58,7 +58,7 @@ p.loadURDF("plane.urdf") # Load a floor
 
 ---
 
-## 4. Test Script
+## Test Script
 Copy and paste this into a `.py` file to see a simple robotic arm in action.
 
 ```python
@@ -91,10 +91,21 @@ p.disconnect()
 
 ---
 
-## 5. Tips
+## Tips
 1.  **Quaternions:** PyBullet uses Quaternions $(x, y, z, w)$ for rotation. Use `p.getQuaternionFromEuler([r, p, y])` if you prefer working with degrees/radians.
 2.  **Indexing:** Joint indices start at $0$. Always check `p.getNumJoints(robotId)` and `p.getJointInfo()` to identify which index corresponds to which motor.
 3.  **Real-Time:** If you don't want to manually step the simulation, use `p.setRealTimeSimulation(1)`, but note this is less deterministic for AI training.
+
+---
+
+## Useful Tools
+### CAD & Modeling
+- [Onshape](https://www.onshape.com/) - Cloud CAD with native URDF export.
+- [MeshLab](https://www.meshlab.net/) - For simplifying STL meshes for faster simulation.
+
+### VS Code Extensions
+- `URDF` & `URDF Previewer` - Live 3D visualization of your robot model.
+- `Error Lens` - Inline error reporting for faster debugging.
 
 ---
 
@@ -114,17 +125,6 @@ To install PyBullet on Windows, follow these steps to ensure the necessary C++ c
     ```bash
     pip install pybullet
     ```
-
----
-
-# Useful Tools
-## CAD & Modeling
-- [Onshape](https://www.onshape.com/) - Cloud CAD with native URDF export.
-- [MeshLab](https://www.meshlab.net/) - For simplifying STL meshes for faster simulation.
-
-## VS Code Extensions
-- `URDF` & `URDF Previewer` - Live 3D visualization of your robot model.
-- `Error Lens` - Inline error reporting for faster debugging.
 
 ## Libraries & Docs
 - [PyBullet Quickstart Guide](https://docs.google.com/document/d/10sXEhzFRSnvFcl3XxNGhnD4N2SedqwdAvK3dsihxVUA/edit) - The ultimate API reference.
