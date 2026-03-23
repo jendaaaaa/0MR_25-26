@@ -149,7 +149,7 @@ Example of a part of 2D pendulum - Cart with 1 DoF (lienar motion) without the r
             <geometry>
                 <box size="1 0.5 0.2"/>
             </geometry>
-            <material name="kokot">
+            <material name="cart_material">
                 <color rgba="0.2 0.2 1 0.9"/>
             </material>
         </visual>
