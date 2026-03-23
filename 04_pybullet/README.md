@@ -45,6 +45,9 @@ import pybullet_data
 p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
+# Hide GUI windows - Recommended for macOS!
+p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
+
 # World settings
 p.setGravity(0, 0, -9.81)
 p.loadURDF("plane.urdf") # Load a floor
