@@ -69,7 +69,7 @@ import gymnasium as gym
 from stable_baselines3 import PPO
 
 try:
-    env = gym.make("LunarLander-v2", render_mode="human")
+    env = gym.make("LunarLander-v3", render_mode="human")
     observation, info = env.reset()
     print("   Success: Environment loaded! Watch the pop-up window.")
     for step in range(200):
