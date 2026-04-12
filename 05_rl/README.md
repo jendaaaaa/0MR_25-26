@@ -2,7 +2,7 @@
 
 This guide covers the installation of Miniconda and the specific libraries required for Stable Baselines3 and Gymnasium (Box2D environments) on Windows.
 
-[![Watch the video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtu.be/VIDEO_ID)
+[![Watch the video](https://img.youtube.com/vi/gMgj4pSHLww/maxresdefault.jpg)](https://www.youtube.com/watch?v=gMgj4pSHLww)
 
 ## 1. Install Miniconda
 1. Download the installer from the [Miniconda Download Page](https://docs.conda.io/en/latest/miniconda.html).
