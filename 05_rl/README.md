@@ -1,7 +1,16 @@
-# Setup Guide: Reinforcement Learning Class
+# Installation Guide for Reinforcement Learning Env
 
 This guide covers the installation of Miniconda and the specific libraries required for Stable Baselines3 and Gymnasium (Box2D environments) on Windows.
 
+## Required Software
+* **Miniconda**
+* **Python 3.10**
+* **Gymnasium (with Box2D)**
+* **Stable Baselines3**
+* **SWIG / C++ Build Tools:**
+* **Visual Studio Code (VS Code)** 
+
+## Video Tutorial
 [![Watch the video](https://img.youtube.com/vi/gMgj4pSHLww/maxresdefault.jpg)](https://www.youtube.com/watch?v=gMgj4pSHLww)
 
 ## 1. Install Miniconda
@@ -40,14 +49,14 @@ To write and run our AI scripts, we need to tell VS Code to use the new sandbox 
 By default, VS Code uses PowerShell, which often blocks Conda environments from activating properly. We need to switch it to Command Prompt.
 
 1. Open VS Code.
-2. Open the Command Palette: Press Ctrl + Shift + P.
-3. Type Terminal: Select Default Profile and press Enter.
+2. Open the Command Palette `[Ctrl + Shift + P]`.
+3. Type Terminal: Select Default Profile and press `[Enter]`.
 4. Select Command Prompt from the list.
 
-### Step B: Select the Python Interpreter (The "Brain")
+### Step B: Select the Python Interpreter
 
-1. Open the Command Palette again: Press Ctrl + Shift + P (Windows) or Cmd + Shift + P (Mac).
-2. Type Python: Select Interpreter and press Enter.
+1. Open the Command Palette `[Ctrl + Shift + P]`
+2. Type Python: Select Interpreter and press `[Enter]`.
 3. Look through the list and select the one that says Python 3.10.x ('rl_env': conda).
 
 ## 5. Verification
