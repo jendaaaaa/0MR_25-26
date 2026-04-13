@@ -7,7 +7,7 @@ This guide covers the installation of Miniconda and the specific libraries requi
 * **Python 3.10**
 * **Gymnasium (with Box2D)**
 * **Stable Baselines3**
-* **SWIG / C++ Build Tools:**
+* **C++ Build Tools:**
 * **Visual Studio Code (VS Code)** 
 
 ## Video Tutorial
