@@ -35,9 +35,6 @@ conda activate rl_env
 Copy and paste these commands into the Anaconda Prompt. These will install the physics engines and the RL frameworks.
 
 ```Bash
-# Install SWIG (Required for Box2D on Windows)
-conda install swig
-
 # Install Gymnasium (Box2D) and Stable Baselines3
 pip install "gymnasium[box2d]" "stable-baselines3[extra]"
 ```
